@@ -5,11 +5,15 @@ using UnityEngine;
 public class SimplePlayerController : MonoBehaviour
 {
     // code mix John & Veronica
+    
     public float moveSpeed = 10; //default movment speed 
     public float sneakSpeed = 5; // have a slower speed then the walk
     public float turnSpeed = 100; // default turning speed 
+    public float maxSpeed = 15; 
     public bool issneaking = false; //is the charature in a sneaking state
     public float currentSpeed = 0; //stablish the state of speed takes place
+    public bool isRunning = false;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -31,6 +35,9 @@ public class SimplePlayerController : MonoBehaviour
         // Sneak with pressing G
         issneaking = Input.GetKey(KeyCode.G);
 
+        // Running with pressing F
+        isRunning = Input.GetKey(KeyCode.F);
+
         // check if sneaking
         if (issneaking)
         {
@@ -39,12 +46,21 @@ public class SimplePlayerController : MonoBehaviour
             Debug.Log("You cliked sneak");
         }
 
-        else
+        else if (isRunning)
         {
-            //make the speed back to normal
-            currentSpeed = moveSpeed;
+
+            //changing the speed to running
+            currentSpeed = maxSpeed;
+            Debug.Log("You are running");
 
         }
 
+        else
+        {
+            // going back to default speed
+            currentSpeed = moveSpeed;
+
+        }
+       
     }
 }
