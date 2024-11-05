@@ -10,10 +10,11 @@ public class SimplePlayerController : MonoBehaviour
     public float sneakSpeed = 5; // have a slower speed then the walk
     public float turnSpeed = 100; // default turning speed 
     public float maxSpeed = 15; // the max speed tha player can go
-    public bool issneaking = false; //is the charature in a sneaking state
     public float currentSpeed = 0; //stablish the state of speed takes place
+
     public bool isRunning = false;// is the player running 
-    
+    public bool issneaking = false; //is the charature in a sneaking state
+
 
     // Start is called before the first frame update
     void Start()
