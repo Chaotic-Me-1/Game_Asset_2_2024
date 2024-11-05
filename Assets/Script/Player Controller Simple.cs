@@ -9,10 +9,10 @@ public class SimplePlayerController : MonoBehaviour
     public float moveSpeed = 10; //default movment speed 
     public float sneakSpeed = 5; // have a slower speed then the walk
     public float turnSpeed = 100; // default turning speed 
-    public float maxSpeed = 15; 
+    public float maxSpeed = 15; // the max speed tha player can go
     public bool issneaking = false; //is the charature in a sneaking state
     public float currentSpeed = 0; //stablish the state of speed takes place
-    public bool isRunning = false;
+    public bool isRunning = false;// is the player running 
     
 
     // Start is called before the first frame update
@@ -45,7 +45,7 @@ public class SimplePlayerController : MonoBehaviour
             currentSpeed = sneakSpeed;
             Debug.Log("You cliked sneak");
         }
-
+        //checking if running 
         else if (isRunning)
         {
 
@@ -54,7 +54,7 @@ public class SimplePlayerController : MonoBehaviour
             Debug.Log("You are running");
 
         }
-
+        // no mater if G or F is pushed the players speed will return back to the normal walking speed 
         else
         {
             // going back to default speed
