@@ -22,6 +22,20 @@ public class Health : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+    }
+
+    // making a funtion that reduces the players health when they take damage
+    // funtion takes in damage amount
+    void Damage(int damage)
+    {
+        currenthealth -= damage;
+
+    }
+
+    // making function that checks the players health
+    void checkHealth()
+    {
         //if the health is less then 0 you are dead 
         if (currenthealth <= 0)
         {
@@ -31,11 +45,7 @@ public class Health : MonoBehaviour
             player.transform.position = respawnPoint.position;
 
         }
-    }
-    // making a own void for damage saying the players health will do down from damage
-    void Damage(int damage)
-    {
-        currenthealth -= damage;
 
     }
+
 }
