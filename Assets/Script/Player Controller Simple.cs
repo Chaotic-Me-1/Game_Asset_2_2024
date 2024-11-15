@@ -5,7 +5,7 @@ using UnityEngine;
 public class SimplePlayerController : MonoBehaviour
 {
     // code mix John & Veronica
-    
+
     public float moveSpeed = 10; //default movment speed 
     public float sneakSpeed = 5; // have a slower speed then the walk
     public float turnSpeed = 100; // default turning speed 
@@ -14,7 +14,8 @@ public class SimplePlayerController : MonoBehaviour
 
     public bool isRunning = false;// is the player running 
     public bool issneaking = false; //is the charature in a sneaking state
-
+    public Animator playerAnim;
+    private bool walking;
 
     // Start is called before the first frame update
     void Start()
@@ -62,6 +63,47 @@ public class SimplePlayerController : MonoBehaviour
             currentSpeed = moveSpeed;
 
         }
-       
+
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            playerAnim.SetTrigger("SlowRun");
+            playerAnim.ResetTrigger("Idle");
+            walking = true;
+        }
+
+        if (Input.GetKeyUp(KeyCode.W))
+        {
+            playerAnim.SetTrigger("Idle");
+            playerAnim.ResetTrigger("SlowRun");
+            walking = false;
+        }
+
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            playerAnim.SetTrigger("SlowRunBackwards");
+            playerAnim.ResetTrigger("Idle");
+        }
+
+        if (Input.GetKeyUp(KeyCode.S))
+        {
+            playerAnim.SetTrigger("Idle");
+            playerAnim.ResetTrigger("SlowRunBackwards");
+        }
+
+        if (walking == true)
+        {
+            if (Input.GetKeyDown(KeyCode.LeftShift))
+            {
+                playerAnim.SetTrigger("FastRun");
+                playerAnim.ResetTrigger("SlowRun");
+            }
+
+            if (Input.GetKeyUp(KeyCode.LeftShift))
+            {
+                playerAnim.SetTrigger("SlowRun");
+                playerAnim.ResetTrigger("FastRun");
+            }
+
+        }
     }
 }
