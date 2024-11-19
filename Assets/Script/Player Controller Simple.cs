@@ -16,6 +16,7 @@ public class SimplePlayerController : MonoBehaviour
     public bool issneaking = false; //is the charature in a sneaking state
     public Animator playerAnim;
     private bool walking;
+    private bool isTurning;
 
     // Start is called before the first frame update
     void Start()
@@ -64,12 +65,28 @@ public class SimplePlayerController : MonoBehaviour
 
         }
 
+        if (Input.GetKey(KeyCode.W) && isTurning == true)
+        {
+            playerAnim.ResetTrigger("LeftTurn");
+            playerAnim.ResetTrigger("RightTurn");
+            playerAnim.SetTrigger("SlowRun");
+            playerAnim.ResetTrigger("Idle");
+            walking = true;
+        }
+
         if (Input.GetKeyDown(KeyCode.W))
         {
             playerAnim.SetTrigger("SlowRun");
             playerAnim.ResetTrigger("Idle");
             walking = true;
         }
+
+        // Partially fixed transition from turning to running animations, if the A or D key is still being held, but it only triggers
+        // when W is pressed a second time, not immediately? 
+        // Also if A or D is still held when player stops running (holding W) it doesn't switch to turning left/right
+
+        //ResetAllTriggers(playerAnim);
+        //Debug.Log("Resetting All Animation Triggers");
 
         if (Input.GetKeyUp(KeyCode.W))
         {
@@ -78,10 +95,14 @@ public class SimplePlayerController : MonoBehaviour
             walking = false;
         }
 
+
+
         if (Input.GetKeyDown(KeyCode.S))
         {
             playerAnim.SetTrigger("SlowRunBackwards");
             playerAnim.ResetTrigger("Idle");
+            playerAnim.ResetTrigger("LeftTurn");
+            playerAnim.ResetTrigger("RightTurn");
         }
 
         if (Input.GetKeyUp(KeyCode.S))
@@ -105,5 +126,58 @@ public class SimplePlayerController : MonoBehaviour
             }
 
         }
+
+        if (walking == false)
+        {
+            
+            if (Input.GetKeyDown(KeyCode.A))
+            {
+                playerAnim.SetTrigger("LeftTurn");
+                playerAnim.ResetTrigger("Idle");
+                playerAnim.ResetTrigger("RightTurn");
+                isTurning = true;
+            }
+
+            if (Input.GetKeyUp(KeyCode.A))
+            {
+                playerAnim.SetTrigger("Idle");
+                playerAnim.ResetTrigger("LeftTurn");
+                isTurning = false;
+
+            }
+
+            if (Input.GetKeyDown(KeyCode.D))
+            {
+                playerAnim.SetTrigger("RightTurn");
+                playerAnim.ResetTrigger("Idle");
+                playerAnim.ResetTrigger("LeftTurn");
+                isTurning = true;
+            }
+
+            if (Input.GetKeyUp(KeyCode.D))
+            {
+                playerAnim.SetTrigger("Idle");
+                playerAnim.ResetTrigger("RightTurn");
+                isTurning = false;
+            }
+
+
+
+        }
+
+    }
+
+    public static void ResetAllTriggers(Animator animator)
+    {
+        foreach (var trigger in animator.parameters)
+        {
+            if (trigger.type == AnimatorControllerParameterType.Trigger)
+            {
+                animator.ResetTrigger(trigger.name);
+            }
+        }
     }
 }
+
+
+
