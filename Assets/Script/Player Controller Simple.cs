@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SimplePlayerController : MonoBehaviour
 {
-    // code mix John & Veronica
+    // code mix John & Veronica & Paul
 
     public float moveSpeed = 10; //default movment speed 
     public float sneakSpeed = 5; // have a slower speed then the walk
