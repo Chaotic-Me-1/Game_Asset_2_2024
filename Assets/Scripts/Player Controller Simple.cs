@@ -12,6 +12,12 @@ public class SimplePlayerController : MonoBehaviour
     public float maxSpeed = 15; // the max speed tha player can go
     public float currentSpeed = 0; //stablish the state of speed takes place
 
+    public Vector3 jump;
+    public float jumpForce =2;
+    public bool IsGrounded = true;
+    private Rigedbody rb;
+    private bool isjumping;
+
     public bool isRunning = false;// is the player running 
     public bool issneaking = false; //is the charature in a sneaking state
     public Animator playerAnim;
@@ -21,18 +27,18 @@ public class SimplePlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        rb = GetComponent<Rigidbody>();
+        jump = new Vector3(0.0, 2.0, 0.0);
     }
 
     // Update is called once per frame
     void Update()
     {
-        //get the axis from unity to get horizontal to move the char
         float turn = Input.GetAxis("Horizontal");
         float move = Input.GetAxis("Vertical");
 
         transform.Rotate(transform.up * turn * turnSpeed * Time.deltaTime);
-        Vector3 newpos = transform.position + (transform.forward * move * currentSpeed * Time.deltaTime);
+        Vector3 newpos = transform.position + (transform.forward * move * moveSpeed * Time.deltaTime);
         transform.position = newpos;
 
         // Sneak with pressing G
@@ -64,6 +70,15 @@ public class SimplePlayerController : MonoBehaviour
             currentSpeed = moveSpeed;
 
         }
+
+        isjumping = Input.GetKeyDown("space");
+
+        if (isjumping)
+           {
+            rb.AddForce(jump*jumpForce,* Time.deltaTime, ForceMode.Impuls);
+            IsGrounded = false;
+
+           }
 
         if (Input.GetKey(KeyCode.W) && isTurning == true)
         {
