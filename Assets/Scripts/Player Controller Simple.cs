@@ -15,7 +15,7 @@ public class SimplePlayerController : MonoBehaviour
     public Vector3 jump;
     public float jumpForce =2;
     public bool IsGrounded = true;
-    private Rigedbody rb;
+    private Rigidbody rb;
     private bool isjumping;
 
     public bool isRunning = false;// is the player running 
@@ -28,7 +28,7 @@ public class SimplePlayerController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        jump = new Vector3(0.0, 2.0, 0.0);
+        jump = new Vector3(0.0f, 2.0f, 0.0f);
     }
 
     // Update is called once per frame
@@ -75,7 +75,7 @@ public class SimplePlayerController : MonoBehaviour
 
         if (isjumping)
            {
-            rb.AddForce(jump*jumpForce,* Time.deltaTime, ForceMode.Impuls);
+            rb.AddForce(jump*jumpForce* Time.deltaTime, ForceMode.Impulse);
             IsGrounded = false;
 
            }
