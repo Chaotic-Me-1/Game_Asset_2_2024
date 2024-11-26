@@ -13,7 +13,7 @@ public class SimplePlayerController : MonoBehaviour
     public float currentSpeed = 0; //stablish the state of speed takes place
 
     public Vector3 jump;
-    public float jumpForce =2;
+    public float jumpForce = 0.25f;
     public bool IsGrounded = true;
     private Rigidbody rb;
     private bool isjumping;
@@ -24,11 +24,14 @@ public class SimplePlayerController : MonoBehaviour
     private bool walking;
     private bool isTurning;
 
+    public float GRAVITY = 9.8f;
+
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        jump = new Vector3(0.0f, 2.0f, 0.0f);
+        jump = Vector3.up;
+
     }
 
     // Update is called once per frame
@@ -74,11 +77,11 @@ public class SimplePlayerController : MonoBehaviour
         isjumping = Input.GetKeyDown("space");
 
         if (isjumping)
-           {
-            rb.AddForce(jump*jumpForce* Time.deltaTime, ForceMode.Impulse);
+        {
+            rb.AddForce(jump * jumpForce * GRAVITY, ForceMode.Impulse);
             IsGrounded = false;
 
-           }
+        }
 
         if (Input.GetKey(KeyCode.W) && isTurning == true)
         {
@@ -144,7 +147,7 @@ public class SimplePlayerController : MonoBehaviour
 
         if (walking == false)
         {
-            
+
             if (Input.GetKeyDown(KeyCode.A))
             {
                 playerAnim.SetTrigger("LeftTurn");
