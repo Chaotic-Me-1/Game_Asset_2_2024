@@ -31,7 +31,7 @@ public class SimplePlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         jump = Vector3.up;
-
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     // Update is called once per frame
@@ -80,7 +80,12 @@ public class SimplePlayerController : MonoBehaviour
         {
             rb.AddForce(jump * jumpForce * GRAVITY, ForceMode.Impulse);
             IsGrounded = false;
+            playerAnim.SetTrigger("Jump");
+        }
 
+        if (IsGrounded)
+        {
+            playerAnim.ResetTrigger("Jump");
         }
 
         if (Input.GetKey(KeyCode.W) && isTurning == true)
@@ -97,6 +102,7 @@ public class SimplePlayerController : MonoBehaviour
             playerAnim.SetTrigger("SlowRun");
             playerAnim.ResetTrigger("Idle");
             walking = true;
+            playerAnim.ResetTrigger("Jump");
         }
 
         // Partially fixed transition from turning to running animations, if the A or D key is still being held, but it only triggers
@@ -114,13 +120,13 @@ public class SimplePlayerController : MonoBehaviour
         }
 
 
-
         if (Input.GetKeyDown(KeyCode.S))
         {
             playerAnim.SetTrigger("SlowRunBackwards");
             playerAnim.ResetTrigger("Idle");
             playerAnim.ResetTrigger("LeftTurn");
             playerAnim.ResetTrigger("RightTurn");
+            playerAnim.ResetTrigger("Jump");
         }
 
         if (Input.GetKeyUp(KeyCode.S))
@@ -135,6 +141,7 @@ public class SimplePlayerController : MonoBehaviour
             {
                 playerAnim.SetTrigger("FastRun");
                 playerAnim.ResetTrigger("SlowRun");
+                playerAnim.ResetTrigger("Jump");
             }
 
             if (Input.GetKeyUp(KeyCode.LeftShift))
@@ -153,6 +160,7 @@ public class SimplePlayerController : MonoBehaviour
                 playerAnim.SetTrigger("LeftTurn");
                 playerAnim.ResetTrigger("Idle");
                 playerAnim.ResetTrigger("RightTurn");
+                playerAnim.ResetTrigger("Jump");
                 isTurning = true;
             }
 
@@ -169,6 +177,7 @@ public class SimplePlayerController : MonoBehaviour
                 playerAnim.SetTrigger("RightTurn");
                 playerAnim.ResetTrigger("Idle");
                 playerAnim.ResetTrigger("LeftTurn");
+                playerAnim.ResetTrigger("Jump");
                 isTurning = true;
             }
 
@@ -185,16 +194,16 @@ public class SimplePlayerController : MonoBehaviour
 
     }
 
-    public static void ResetAllTriggers(Animator animator)
-    {
-        foreach (var trigger in animator.parameters)
-        {
-            if (trigger.type == AnimatorControllerParameterType.Trigger)
-            {
-                animator.ResetTrigger(trigger.name);
-            }
-        }
-    }
+    //public static void ResetAllTriggers(Animator animator)
+    //{
+    //    foreach (var trigger in animator.parameters)
+    //    {
+    //        if (trigger.type == AnimatorControllerParameterType.Trigger)
+    //        {
+    //            animator.ResetTrigger(trigger.name);
+    //        }
+    //    }
+    //}
 }
 
 
