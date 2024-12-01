@@ -6,11 +6,16 @@ using UnityEngine.UI;
 public class Health : MonoBehaviour
 {
     //Veronica coding
-    public int Maxhealth = 100;
-    public int currenthealth;
+    public float Maxhealth = 100;
+    public float currenthealth;
     // Youtube.  
     public GameObject player;
     public Transform respawnPoint;
+
+    //Healthbar UI Reference - Paul B.
+    public Image healthBar;
+
+
 
     // Start is called before the first frame update
     void Start()
@@ -22,15 +27,22 @@ public class Health : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        // TEMPORARY INPUT FOR TESTING DAMAGE & HEALTHBAR UI
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            Damage(10);
+        }
     }
 
     // making a funtion that reduces the players health when they take damage
     // funtion takes in damage amount
-    void Damage(int damage)
+    void Damage(float damage)
     {
         currenthealth -= damage;
 
+        // Update Health bar UI & check health after taking damage - Paul B.
+        healthBar.fillAmount = currenthealth / 100f;
+        checkHealth();
     }
 
     // making function that checks the players health
@@ -39,11 +51,16 @@ public class Health : MonoBehaviour
         //if the health is less then 0 you are dead 
         if (currenthealth <= 0)
         {
+            Debug.Log("YOU ARE DEAD");
+
             //You are dead UI
 
             //Youtube. Teleport the player to the destend respawn point
             player.transform.position = respawnPoint.position;
 
+            // Reset player health & Healthbar UI on respawn - Paul B.
+            currenthealth = Maxhealth;
+            healthBar.fillAmount = currenthealth / 100f;
         }
 
     }
