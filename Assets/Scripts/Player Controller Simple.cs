@@ -14,7 +14,7 @@ public class SimplePlayerController : MonoBehaviour
 
     public Vector3 jump;
     public float jumpForce = 0.25f;
-    public bool IsGrounded = true;
+    public bool IsGrounded;
     private Rigidbody rb;
     private bool isjumping;
 
@@ -47,8 +47,8 @@ public class SimplePlayerController : MonoBehaviour
         // Sneak with pressing G
         issneaking = Input.GetKey(KeyCode.G);
 
-        // Running with pressing F
-        isRunning = Input.GetKey(KeyCode.F);
+        // Running with pressing Shift
+        isRunning = Input.GetKey(KeyCode.LeftShift);
 
         // check if sneaking
         if (issneaking)
@@ -74,10 +74,12 @@ public class SimplePlayerController : MonoBehaviour
 
         }
 
+        //Jump is space
         isjumping = Input.GetKeyDown("space");
 
-        if (isjumping)
+        if (isjumping&&IsGrounded)
         {
+            //using force and gavity to make the player jump to keep the rb
             rb.AddForce(jump * jumpForce * GRAVITY, ForceMode.Impulse);
             IsGrounded = false;
             playerAnim.SetTrigger("Jump");
@@ -188,23 +190,30 @@ public class SimplePlayerController : MonoBehaviour
                 isTurning = false;
             }
 
-
+            //public static void ResetAllTriggers(Animator animator)
+            //{
+            //    foreach (var trigger in animator.parameters)
+            //    {
+            //        if (trigger.type == AnimatorControllerParameterType.Trigger)
+            //        {
+            //            animator.ResetTrigger(trigger.name);
+            //        }
+            //    }
+            //}
 
         }
 
+
     }
 
-    //public static void ResetAllTriggers(Animator animator)
-    //{
-    //    foreach (var trigger in animator.parameters)
-    //    {
-    //        if (trigger.type == AnimatorControllerParameterType.Trigger)
-    //        {
-    //            animator.ResetTrigger(trigger.name);
-    //        }
-    //    }
-    //}
+    void OnCollisionEnter(Collision other)
+
+    {
+        if (other.gameObject.CompareTag("Ground"))
+        {
+            IsGrounded = true;
+            Debug.Log("You are on ground");
+
+        }
+    }
 }
-
-
-
