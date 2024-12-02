@@ -7,6 +7,8 @@ public class Projectile : MonoBehaviour
     public float speed = 5;
     //Vector3 flightDirection;
     //public GameObject projectileSpawner;
+    private GameObject player;
+    public float damageAmount;
 
     void Start()
 
@@ -26,9 +28,10 @@ public class Projectile : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            //DAMAGE PLAYER HERE - Call custom function on player to deal damage
-            //Potentially add variable to projectile for how much damage is dealt
-            Debug.Log("PLAYER HIT!");
+            player = other.gameObject;
+            player.GetComponent("Health").BroadcastMessage("Damage", damageAmount);
+
+            //Debug.Log("PLAYER HIT!");
             Destroy(gameObject);
         }
         else
@@ -36,9 +39,6 @@ public class Projectile : MonoBehaviour
             Debug.Log("Projectile hit " + other.gameObject.name);
             Destroy(gameObject);
         }
-
-
-
 
         }
     }
