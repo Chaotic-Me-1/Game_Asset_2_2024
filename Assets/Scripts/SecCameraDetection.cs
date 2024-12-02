@@ -6,6 +6,7 @@ public class SecCameraDetection : MonoBehaviour
 {
     public GameObject lightToChange;
     private Light lightRef;
+    public GameObject timerScript;
 
     void Start()
     {
@@ -23,6 +24,8 @@ public class SecCameraDetection : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             Debug.Log("Player detected!!!");
+            timerScript.SetActive(true);
+
             lightRef.color = Color.red;
         }
     }

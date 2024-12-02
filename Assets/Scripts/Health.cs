@@ -27,16 +27,19 @@ public class Health : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // TEMPORARY INPUT FOR TESTING DAMAGE & HEALTHBAR UI
+        
+        
+        /* TEMPORARY INPUT FOR TESTING DAMAGE & HEALTHBAR UI - Paul B.
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             Damage(10);
         }
+        */
     }
 
     // making a funtion that reduces the players health when they take damage
     // funtion takes in damage amount
-    void Damage(float damage)
+    public void Damage(float damage)
     {
         currenthealth -= damage;
 
