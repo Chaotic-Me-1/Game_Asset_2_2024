@@ -8,10 +8,12 @@ public class Dooropen_animation : MonoBehaviour
     //public TrapTrigger trigger;
     //public CodeUnlocked Unlocked;
     public bool isE_pressed;
+    public bool DoorLvl1open;
+    public bool DoorLvl1closed;
     // Start is called before the first frame update
     void Start()
     {
-        isE_pressed = true;
+        isE_pressed = false;
     }
 
     // Update is called once per frame
@@ -35,10 +37,10 @@ public class Dooropen_animation : MonoBehaviour
     private void OnTriggerEnter(Collider other) 
     {
         isE_pressed = false;
-
-
-
     }
+
+
+    
 
 
 
@@ -49,17 +51,19 @@ public class Dooropen_animation : MonoBehaviour
         if (other.tag == ("Player") && 
             isE_pressed == true)
         {
-            doorAnimation.SetBool("Opening", true); 
+            doorAnimation.SetTrigger("OpeningTrigger"); 
             Debug.Log ("is opening");
+            DoorLvl1open = true;
         }
     }
     private void OnTriggerExit(Collider other) 
     {
-        if( other.tag == ("Player")) 
+        if( other.tag == ("Player")   &&
+            DoorLvl1open == true) 
         {
-            doorAnimation.SetBool("Opening", false);
+            doorAnimation.SetTrigger("ClosingTrigger");
             isE_pressed = false;
-
+            DoorLvl1closed = true;
         }
     
     

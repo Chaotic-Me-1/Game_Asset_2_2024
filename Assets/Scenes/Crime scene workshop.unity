@@ -49469,7 +49469,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 8b0ff2c84c67b4740b7322da059b7972, type: 2}
     - target: {fileID: 919132149155446097, guid: bdb70705211ce1649b4ff0ad00d99e21, type: 3}
       propertyPath: m_Name
-      value: dOOR FRAMR
+      value: Floor 1 Door
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -60074,7 +60074,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: 67a637c1116259145ae73624add01b33, type: 2}
   m_CullingMode: 2
   m_UpdateMode: 0
-  m_ApplyRootMotion: 0
+  m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_WarningMessage: 
@@ -60094,8 +60094,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8e5955f6d568e947a73ebda4ac83c1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  doorAnimation: {fileID: 282016272}
+  doorAnimation: {fileID: 1325342485}
   isE_pressed: 0
+  DoorLvl1open: 0
+  DoorLvl1closed: 0
 --- !u!65 &1325342487
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -72060,6 +72062,7 @@ GameObject:
   - component: {fileID: 1605123376}
   - component: {fileID: 1605123378}
   - component: {fileID: 1605123377}
+  - component: {fileID: 1605123379}
   m_Layer: 0
   m_Name: PlayerCapsule
   m_TagString: Player
@@ -72237,6 +72240,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventory: []
+--- !u!114 &1605123379
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1605123370}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a4ad297abcc96845a44c1591018dfcc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Floor1Door: {fileID: 1325342485}
+  dooropen_Animation: {fileID: 1325342486}
 --- !u!1001 &1606440633
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -81434,7 +81451,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: ee902c0c308686b4188975a03b33eab9, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
-  m_ApplyRootMotion: 0
+  m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_WarningMessage: 
