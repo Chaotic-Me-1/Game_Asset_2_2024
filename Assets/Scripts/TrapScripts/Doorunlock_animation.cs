@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Doorunlock_animation : MonoBehaviour
 {
-    public Animation doorAnimation;
+    public Animator doorAnimation;
     //public TrapTrigger trigger;
     public CodeUnlocked Unlocked;
     // Start is called before the first frame update
@@ -33,7 +33,7 @@ public class Doorunlock_animation : MonoBehaviour
         if (other.tag == ("Player") &&
             Unlocked.isUnlocked == true)
         {
-            doorAnimation.Play();
+            
 
 
 
