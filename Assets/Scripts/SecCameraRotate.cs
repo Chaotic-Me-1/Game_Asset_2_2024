@@ -12,6 +12,8 @@ public class SecCameraRotate : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //Store local transform on game start and calculate rotation from that instead of hard values 
+        
         rotPoint1 = Quaternion.Euler(-30, -35, 0);
         rotPoint2 = Quaternion.Euler(-30, 35, 0);
         //cameraBody = transform.Find("CameraBody");
