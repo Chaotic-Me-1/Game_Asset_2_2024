@@ -14376,6 +14376,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   doorAnimation: {fileID: 282016272}
   Unlocked: {fileID: 1974268263}
+  isE_pressed: 0
 --- !u!1 &348222662 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -7609145667655734672, guid: 045058f69978f9c4488017250d986820, type: 3}
@@ -31182,6 +31183,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 56237ca4233736d478d3dda8fe3eb91a, type: 2}
+    - target: {fileID: 5830455317042793823, guid: 2a5a8e152d6593d4e80f01f4de34a53f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.01
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -72062,7 +72067,6 @@ GameObject:
   - component: {fileID: 1605123376}
   - component: {fileID: 1605123378}
   - component: {fileID: 1605123377}
-  - component: {fileID: 1605123379}
   m_Layer: 0
   m_Name: PlayerCapsule
   m_TagString: Player
@@ -72240,20 +72244,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventory: []
---- !u!114 &1605123379
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1605123370}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a4ad297abcc96845a44c1591018dfcc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Floor1Door: {fileID: 1325342485}
-  dooropen_Animation: {fileID: 1325342486}
 --- !u!1001 &1606440633
 PrefabInstance:
   m_ObjectHideFlags: 0
