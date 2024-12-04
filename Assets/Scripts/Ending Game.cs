@@ -49,7 +49,7 @@ public class EndingGame : MonoBehaviour
         if (IsPlayerInsideEnd)
         {
             //Getting input for both T and O 
-            if (Input.GetKeyDown(KeyCode.T) || Input.GetKeyDown(KeyCode.O))
+            if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow))
             {
                 //calls the quit game function to quit the game 
                 Debug.Log("Game end");
