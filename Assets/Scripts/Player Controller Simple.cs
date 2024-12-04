@@ -23,6 +23,7 @@ public class SimplePlayerController : MonoBehaviour
     public Animator playerAnim;
     private bool walking;
     private bool isTurning;
+    public float rbVelocity;
 
     public float GRAVITY = 9.8f;
 
@@ -40,6 +41,7 @@ public class SimplePlayerController : MonoBehaviour
         float turn = Input.GetAxis("Horizontal");
         float move = Input.GetAxis("Vertical");
 
+        rbVelocity = rb.velocity.magnitude;
         transform.Rotate(transform.up * turn * turnSpeed * Time.deltaTime);
         Vector3 newpos = transform.position + (transform.forward * move * currentSpeed * Time.deltaTime);
         transform.position = newpos;
@@ -75,19 +77,37 @@ public class SimplePlayerController : MonoBehaviour
         }
 
         //Jump is space
-        isjumping = Input.GetKeyDown("space");
+        isjumping = Input.GetKeyDown(KeyCode.Space);
 
         if (isjumping&&IsGrounded)
         {
             //using force and gavity to make the player jump to keep the rb
             rb.AddForce(jump * jumpForce * GRAVITY, ForceMode.Impulse);
             IsGrounded = false;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space)) 
+        {
             playerAnim.SetTrigger("Jump");
         }
 
-        if (IsGrounded)
+        if (Input.GetKeyUp(KeyCode.Space))
         {
             playerAnim.ResetTrigger("Jump");
+            playerAnim.SetTrigger("SlowRun");
+        }
+
+
+        //Using rigidbody velocity to reset all triggers and go to idle when standing still, just in case they haven't set/reset properly elsewhere.
+        if (rbVelocity == 0)
+        {
+            playerAnim.ResetTrigger("LeftTurn");
+            playerAnim.ResetTrigger("RightTurn");
+            playerAnim.ResetTrigger("Jump");
+            playerAnim.ResetTrigger("SlowRun");
+            playerAnim.ResetTrigger("SlowRunBackwards");
+            playerAnim.ResetTrigger("FastRun");
+            playerAnim.SetTrigger("Idle");
         }
 
         if (Input.GetKey(KeyCode.W) && isTurning == true)
@@ -118,6 +138,7 @@ public class SimplePlayerController : MonoBehaviour
         {
             playerAnim.SetTrigger("Idle");
             playerAnim.ResetTrigger("SlowRun");
+            playerAnim.ResetTrigger("FastRun");
             walking = false;
         }
 

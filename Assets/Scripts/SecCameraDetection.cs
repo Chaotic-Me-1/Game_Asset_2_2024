@@ -6,14 +6,18 @@ public class SecCameraDetection : MonoBehaviour
 {
     public GameObject lightToChange;
     private Light lightRef;
-    public GameObject timerScript;
+    private GameObject timerScript;
 
     void Start()
     {
         lightRef = lightToChange.GetComponent<Light>();
+        timerScript = GameObject.FindGameObjectWithTag("Timer");
     }
 
-    // Update is called once per frame
+    // Timer doesn't trigger for some reason, tried to set it up within script, but can go back to original method
+    // of setting the timerScript GameObject manually on each camera. (Or save timer as a prefab, and then maybe it's possible to add to camera prefab
+
+
     void Update()
     {
         

@@ -5,14 +5,16 @@ using UnityEngine;
 public class Turret : MonoBehaviour
 {
     public Transform player;
+    public Collider playerCapsule;
     public float rotateSpeed;
     public float castRange;
-    public Transform castResult;
+    public Collider castResult;
     public GameObject projectile;
     public Transform projectileSpawnPoint;
     private IEnumerator shooterCoroutine;
     public float fireRate;
     public bool playerVisible = false;
+    public int shootDelay;
     //public Vector3 direction;
 
     void Start()
@@ -30,17 +32,22 @@ public class Turret : MonoBehaviour
         transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, (rotateSpeed * Time.deltaTime));
         transform.localEulerAngles = new Vector3(0, transform.localEulerAngles.y, 0);
 
+        if (shootDelay <= 20)
+        {
+            shootDelay++;
+        }
+
+
  #region Handles Player Detection (Raycast)
 
-        Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * castRange, Color.green);
+        Debug.DrawRay(transform.position + new Vector3(0f, 1f, 0f), transform.TransformDirection(Vector3.forward) * castRange, Color.green);
 
-        if (Physics.Raycast(transform.position + transform.forward, transform.forward, out RaycastHit hitInfo))
+        if (Physics.Raycast(transform.position + new Vector3(0f, 1f, 0f), transform.TransformDirection(Vector3.forward), out RaycastHit hitInfo))
         {
-            castResult = hitInfo.collider.transform;
-
-            if (castResult == player)
+            castResult = hitInfo.collider;
+            if (castResult == playerCapsule)
             {
-                Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hitInfo.distance, Color.red);
+                Debug.DrawRay(transform.position + new Vector3(0f, 1f, 0f), transform.TransformDirection(Vector3.forward) * hitInfo.distance, Color.red);
                 Debug.Log("Pew! Pew! Shooting Player!");
                 playerVisible = true;
             }
@@ -61,13 +68,14 @@ public class Turret : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(fireRate);
-            
+            yield return new WaitUntil(() => shootDelay >= 20);
+
             if (playerVisible == true)
 
             {
                 GameObject projectileInstance = Instantiate(projectile, projectileSpawnPoint);
                 projectileInstance.transform.parent = null;
+                shootDelay = 0;
                 
 
                 //projectileInstance = Instantiate(projectile, projectileSpawnPoint.transform.position, Quaternion.identity);
