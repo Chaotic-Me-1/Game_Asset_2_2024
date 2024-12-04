@@ -41,7 +41,7 @@ public class SimplePlayerController : MonoBehaviour
         float move = Input.GetAxis("Vertical");
 
         transform.Rotate(transform.up * turn * turnSpeed * Time.deltaTime);
-        Vector3 newpos = transform.position + (transform.forward * move * moveSpeed * Time.deltaTime);
+        Vector3 newpos = transform.position + (transform.forward * move * currentSpeed * Time.deltaTime);
         transform.position = newpos;
 
         // Sneak with pressing G
