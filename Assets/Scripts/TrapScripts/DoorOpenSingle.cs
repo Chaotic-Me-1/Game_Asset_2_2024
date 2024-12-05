@@ -7,6 +7,7 @@ public class DoorOpenSingle : MonoBehaviour
 {
     public Animation SDAnimation;
     public bool open;
+    public AudioSource slidingDoorSound;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +25,7 @@ public class DoorOpenSingle : MonoBehaviour
         {
              open = true;
         }
+
         if (other.tag == ("Player") &&
             open == true)
         {
@@ -38,6 +40,10 @@ public class DoorOpenSingle : MonoBehaviour
         }
     }
 
+    void PlayDoorSound() 
+    {
+        slidingDoorSound.Play();
+    }
 
 
     

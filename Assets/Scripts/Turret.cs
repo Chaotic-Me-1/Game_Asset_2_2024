@@ -15,6 +15,8 @@ public class Turret : MonoBehaviour
     public float fireRate;
     public bool playerVisible = false;
     public int shootDelay;
+    public AudioSource shootSound;
+
     //public Vector3 direction;
 
     void Start()
@@ -79,7 +81,7 @@ public class Turret : MonoBehaviour
                 GameObject projectileInstance = Instantiate(projectile, projectileSpawnPoint);
                 projectileInstance.transform.parent = null;
                 shootDelay = 0;
-                
+                shootSound.Play();
 
                 //projectileInstance = Instantiate(projectile, projectileSpawnPoint.transform.position, Quaternion.identity);
                 //projectileInstance.transform.eulerAngles = Vector3.zero;

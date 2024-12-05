@@ -11,6 +11,8 @@ public class Dooropen_animation : MonoBehaviour
     public bool isE_pressed;
     public bool DoorLvl1open;
     public bool DoorLvl1closed;
+    public AudioSource slidingDoorSound;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -40,21 +42,12 @@ public class Dooropen_animation : MonoBehaviour
         isE_pressed = false;
     }
 
-
-    
-
-
-
-
-
     private void OnTriggerStay(Collider other)
     {       // a simple trigger that when you have Interacted CodeUnlocked the animation will play when entering  
 
         if (other.tag == ("Player")) 
         {
             Press_E.gameObject.SetActive(true);
-        
-        
         }
 
 
@@ -80,15 +73,22 @@ public class Dooropen_animation : MonoBehaviour
         if ( other.tag == ("Player")   &&
             DoorLvl1open == true) 
         {
+            doorAnimation.ResetTrigger("OpeningTrigger");
             doorAnimation.SetTrigger("ClosingTrigger");
             isE_pressed = false;
-            DoorLvl1closed = true;
-
+            DoorLvl1closed = true; 
         }
-    
-    
-    
     }
 
+    void PlayDoorSound()
+    {
+        slidingDoorSound.pitch = 1f;
+        slidingDoorSound.Play();
+    }
 
+    void PlayDoorSoundSlowed()
+    {
+        slidingDoorSound.pitch = 0.4f;
+        slidingDoorSound.Play();
+    }
 }
