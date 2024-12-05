@@ -28,7 +28,7 @@ public class KeyPickup : MonoBehaviour
         // just an indecator that you have pressed and i use it for other script to know that you have picked up the item   
         itemGot = true;
 
-
+        Debug.Log("got item");
 
     }
 }
