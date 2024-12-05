@@ -8,6 +8,8 @@ public class CodeUnlocked : MonoBehaviour
     public Text Press_E;
     public bool isUnlocked = false;
     public KeyPickup keypickup;
+    public GameObject timerScript;
+
     [SerializeField] private bool isE_pressed;
     // Start is called before the first frame update
     void Start()
@@ -33,33 +35,22 @@ public class CodeUnlocked : MonoBehaviour
 
 
 
-
-
-
-
-
     public void OnTriggerStay(Collider other)
     {
         if (other.tag == ("Player") &&
             keypickup.itemGot == true)
         {
             Press_E.gameObject.SetActive(true);
-
-
         }
-
-
         // if  you pressed E and Got the Item it will be true
         if (other.tag == "Player" &&
            isE_pressed == true &&
            keypickup.itemGot == true)
-
         {
             // this is used to for other scripts to know that you have interated with this object
             isUnlocked = true;
             Debug.Log(" its unlocked");
-
-
+            timerScript.SetActive(false);
             Press_E.gameObject.SetActive(false);
         }
     }
