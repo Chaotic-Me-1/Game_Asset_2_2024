@@ -11,7 +11,7 @@ public class ShowUIPhone : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {   //setting the statment at ture when the game start 
-        IsMainShowing = true;  
+        IsMainShowing = true;
     }
 
     // Update is called once per frame

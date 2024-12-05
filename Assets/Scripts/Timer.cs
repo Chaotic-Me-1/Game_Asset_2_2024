@@ -5,6 +5,7 @@ using TMPro;
 
 public class Timer : MonoBehaviour
 {
+    //Youtube & Veronica code & Paul code
     [SerializeField] TextMeshProUGUI timerText;
     [SerializeField] float remainingTime;
     public GameObject player;
