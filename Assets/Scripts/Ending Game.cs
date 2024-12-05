@@ -17,7 +17,7 @@ public class EndingGame : MonoBehaviour
     void Start()
     {
         IsChoiceShowing = false;
-        AI.SetActive = false;
+        //AI.SetActive = false;
     }
     //Make an trigger to detect the player and show UI
     //it accepts a collider to be checked
