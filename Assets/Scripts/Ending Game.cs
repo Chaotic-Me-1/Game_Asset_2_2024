@@ -8,11 +8,16 @@ public class EndingGame : MonoBehaviour
     public bool IsPlayerInsideEnd = false;
     public GameObject Choice;
     public bool IsChoiceShowing;
+    public GameObject AI;
+    public GameObject Data;
+    public bool ChoiceAI = false;
+    public bool ChoiceData = false;
 
     // Start is called before the first frame update
     void Start()
     {
         IsChoiceShowing = false;
+        AI.SetActive = false;
     }
     //Make an trigger to detect the player and show UI
     //it accepts a collider to be checked
@@ -38,6 +43,7 @@ public class EndingGame : MonoBehaviour
             IsPlayerInsideEnd = false;
             IsChoiceShowing = false;
             Choice.SetActive(IsChoiceShowing);
+            
 
         }
     }
@@ -48,8 +54,23 @@ public class EndingGame : MonoBehaviour
         //Ses if the player is inside of the collider 
         if (IsPlayerInsideEnd)
         {
-            //Getting input for both T and O 
-            if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow))
+            //Getting input Left Arrown key  
+            if (Input.GetKeyDown(KeyCode.LeftArrow))
+            {
+                //showing of the end game UI
+
+                AI.SetActive(ChoiceAI);
+
+            }
+
+            if (Input.GetKeyDown(KeyCode.RightArrow))
+            {
+                Data.SetActive(ChoiceData);
+
+             
+            }
+
+            if (Input.GetKeyDown(KeyCode.Q))
             {
                 //calls the quit game function to quit the game 
                 Debug.Log("Game end");
