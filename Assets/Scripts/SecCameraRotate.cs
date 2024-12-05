@@ -7,7 +7,7 @@ public class SecCameraRotate : MonoBehaviour
     public float rotateSpeed;
     Quaternion rotPoint1;
     Quaternion rotPoint2;
-    private Vector3 lookDirection;
+    //private Vector3 lookDirection;
     public float rotAmount;
     public Transform cameraBody;
 
@@ -22,7 +22,6 @@ public class SecCameraRotate : MonoBehaviour
         //lookDirection = Vector3.forward;
         //rotPoint1 = Quaternion.LookRotation(lookDirection, Vector3.up)
 
-        //--DIDN'T WORK--//
         rotPoint1 = Quaternion.Euler(cameraBody.rotation.x + 30, cameraBody.localRotation.y + rotAmount, cameraBody.rotation.z);
         rotPoint2 = Quaternion.Euler(cameraBody.rotation.x + 30, cameraBody.localRotation.y - rotAmount, cameraBody.rotation.z);
 

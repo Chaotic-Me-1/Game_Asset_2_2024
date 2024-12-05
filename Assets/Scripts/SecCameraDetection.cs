@@ -6,12 +6,13 @@ public class SecCameraDetection : MonoBehaviour
 {
     public GameObject lightToChange;
     private Light lightRef;
-    private GameObject timerScript;
+    public GameObject timerScript;
 
     void Start()
     {
         lightRef = lightToChange.GetComponent<Light>();
-        timerScript = GameObject.FindGameObjectWithTag("Timer");
+
+        //timerScript = GameObject.FindGameObjectWithTag("Timer");
     }
 
     // Timer doesn't trigger for some reason, tried to set it up within script, but can go back to original method

@@ -21,16 +21,19 @@ public class Turret : MonoBehaviour
     {
         shooterCoroutine = ShootCounter(fireRate);
         StartCoroutine(shooterCoroutine);
-
     }
 
     void Update()
     {
+#region Handles Turret Rotation To Player
+
         var direction = (player.transform.position - transform.position);
         var targetRotation = Quaternion.LookRotation(direction);
 
         transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, (rotateSpeed * Time.deltaTime));
         transform.localEulerAngles = new Vector3(0, transform.localEulerAngles.y, 0);
+
+#endregion
 
         if (shootDelay <= 20)
         {

@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotateSpeed: 5
-  rotAmount: 15
+  rotAmount: 30
   cameraBody: {fileID: 7030742817230448865}
 --- !u!1 &5937827958758873432
 GameObject:
