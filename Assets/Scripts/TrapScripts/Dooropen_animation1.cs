@@ -1,9 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class Dooropen_animation : MonoBehaviour
 {
+    public Text Press_E;
     public Animator doorAnimation;
     //public TrapTrigger trigger;
     //public CodeUnlocked Unlocked;
@@ -48,22 +49,41 @@ public class Dooropen_animation : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {       // a simple trigger that when you have Interacted CodeUnlocked the animation will play when entering  
+
+        if (other.tag == ("Player")) 
+        {
+            Press_E.gameObject.SetActive(true);
+        
+        
+        }
+
+
+
         if (other.tag == ("Player") && 
             isE_pressed == true)
         {
             doorAnimation.SetTrigger("OpeningTrigger"); 
             Debug.Log ("is opening");
             DoorLvl1open = true;
+            Press_E.gameObject.SetActive(false);
         }
     }
     private void OnTriggerExit(Collider other) 
     {
-        if( other.tag == ("Player")   &&
+
+        if (other.tag == ("Player"))
+        {
+            Press_E.gameObject.SetActive(false);
+        }
+
+
+        if ( other.tag == ("Player")   &&
             DoorLvl1open == true) 
         {
             doorAnimation.SetTrigger("ClosingTrigger");
             isE_pressed = false;
             DoorLvl1closed = true;
+
         }
     
     

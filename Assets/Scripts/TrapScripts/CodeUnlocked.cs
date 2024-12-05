@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CodeUnlocked : MonoBehaviour
 {
-
+    public Text Press_E;
     public bool isUnlocked = false;
     public KeyPickup keypickup;
     [SerializeField] private bool isE_pressed;
@@ -39,6 +40,15 @@ public class CodeUnlocked : MonoBehaviour
 
     public void OnTriggerStay(Collider other)
     {
+        if (other.tag == ("Player") &&
+            keypickup.itemGot == true)
+        {
+            Press_E.gameObject.SetActive(true);
+
+
+        }
+
+
         // if  you pressed E and Got the Item it will be true
         if (other.tag == "Player" &&
            isE_pressed == true &&
@@ -48,12 +58,21 @@ public class CodeUnlocked : MonoBehaviour
             // this is used to for other scripts to know that you have interated with this object
             isUnlocked = true;
             Debug.Log(" its unlocked");
+
+
+            Press_E.gameObject.SetActive(false);
         }
-
-
-
-
     }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == ("Player"))
+        {
+            Press_E.gameObject.SetActive(false);
+        }
+    }
+
+
 
 
 }
