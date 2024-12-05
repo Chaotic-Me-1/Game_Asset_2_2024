@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class TeleportPlayer : MonoBehaviour
 {
+    //Veronica code & Youtube 
     bool PlayerHasFallen = false;
     // Youtube.  
     public GameObject Player;

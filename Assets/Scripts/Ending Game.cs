@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class EndingGame : MonoBehaviour
 {
+    // Veronica Code
     public bool IsPlayerInsideEnd = false;
     public GameObject Choice;
     public bool IsChoiceShowing;
@@ -16,8 +17,10 @@ public class EndingGame : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //starting with putting the UI bool check is false when starting 
         IsChoiceShowing = false;
-        //AI.SetActive = false;
+        ChoiceAI = false;
+        ChoiceData = false;
     }
     //Make an trigger to detect the player and show UI
     //it accepts a collider to be checked
@@ -42,9 +45,10 @@ public class EndingGame : MonoBehaviour
         {
             IsPlayerInsideEnd = false;
             IsChoiceShowing = false;
+            ChoiceAI = false;
+            ChoiceData = false;
             Choice.SetActive(IsChoiceShowing);
-            
-
+           
         }
     }
 
@@ -54,28 +58,35 @@ public class EndingGame : MonoBehaviour
         //Ses if the player is inside of the collider 
         if (IsPlayerInsideEnd)
         {
-            //Getting input Left Arrown key  
+            
             if (Input.GetKeyDown(KeyCode.LeftArrow))
             {
                 //showing of the end game UI
-
-                AI.SetActive(ChoiceAI);
-
-            }
-
-            if (Input.GetKeyDown(KeyCode.RightArrow))
-            {
+                ChoiceData = true;
                 Data.SetActive(ChoiceData);
 
-             
+            }
+             //Checking if right key is pushed 
+            else if (Input.GetKeyDown(KeyCode.RightArrow))
+            {
+                //makes the choice ai true to show the UI ending show
+                ChoiceAI = true;
+                AI.SetActive(ChoiceAI); 
+                
+  
+            }
+            // checking if both choiceai and choicedata is true to end the game 
+            if (ChoiceAI || ChoiceData)
+            {
+                if (Input.GetKeyDown(KeyCode.Q))
+                {
+                    //calls the quit game function to quit the game 
+                    Debug.Log("Game end");
+                    QuitGame();
+                }
             }
 
-            if (Input.GetKeyDown(KeyCode.Q))
-            {
-                //calls the quit game function to quit the game 
-                Debug.Log("Game end");
-                QuitGame();
-            }
+           
         }
     }
     //this function will quit the game 
