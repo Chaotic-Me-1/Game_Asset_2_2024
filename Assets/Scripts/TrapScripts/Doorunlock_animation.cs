@@ -10,6 +10,7 @@ public class Doorunlock_animation : MonoBehaviour
     //public TrapTrigger trigger;
     public CodeUnlocked Unlocked;
     public bool isE_pressed;
+    public AudioSource slidingDoorSound;
 
     // Start is called before the first frame update
     void Start()
@@ -72,6 +73,16 @@ public class Doorunlock_animation : MonoBehaviour
 
     }
 
+    void PlayDoorSound()
+    {
+        slidingDoorSound.pitch = 1f;
+        slidingDoorSound.Play();
+    }
 
+    void PlayDoorSoundSlowed()
+    {
+        slidingDoorSound.pitch = 0.4f;
+        slidingDoorSound.Play();
+    }
 
 }

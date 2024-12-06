@@ -24,7 +24,6 @@ public class SimplePlayerController : MonoBehaviour
     private bool walking;
     private bool isTurning;
     public float rbVelocity;
-
     public float GRAVITY = 9.8f;
 
     // Start is called before the first frame update
@@ -192,7 +191,6 @@ public class SimplePlayerController : MonoBehaviour
                 playerAnim.SetTrigger("Idle");
                 playerAnim.ResetTrigger("LeftTurn");
                 isTurning = false;
-
             }
 
             if (Input.GetKeyDown(KeyCode.D))
@@ -221,10 +219,7 @@ public class SimplePlayerController : MonoBehaviour
             //        }
             //    }
             //}
-
         }
-
-
     }
 
     void OnCollisionEnter(Collision other)

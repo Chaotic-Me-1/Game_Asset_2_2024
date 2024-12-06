@@ -81,6 +81,8 @@ public class Turret : MonoBehaviour
                 GameObject projectileInstance = Instantiate(projectile, projectileSpawnPoint);
                 projectileInstance.transform.parent = null;
                 shootDelay = 0;
+                shootSound.volume = Random.Range(0.2f, 0.3f);
+                shootSound.pitch = Random.Range(0.8f, 1.2f);
                 shootSound.Play();
 
                 //projectileInstance = Instantiate(projectile, projectileSpawnPoint.transform.position, Quaternion.identity);

@@ -12,6 +12,7 @@ public class Timer : MonoBehaviour
     public Transform respawnPoint;
     private float startingTime;
     public GameObject failedScreen;
+    private bool failScreenShowing;
 
     // Update is called once per frame
     void Start()
@@ -33,17 +34,19 @@ public class Timer : MonoBehaviour
             //Gameover
             timerText.color = Color.red;
 
-            //RESPAWN ON TIMER FINISH, RESET TIMER VALUES & COLOUR, DEACTIVATE TIMER
 
-            player.transform.position = respawnPoint.position;
-            remainingTime = startingTime;
-            timerText.color = Color.white;
-            gameObject.SetActive(false);
+            failedScreen.SetActive(true);
+            failScreenShowing = true;
+        }
 
-            //QUIT GAME ON TIMER FINISH
-            //Application.Quit();
+        if (failScreenShowing && Input.GetKeyDown(KeyCode.R))
+        {
+            Restart();
+        }
 
-            Debug.Log("Game end");
+        if (failScreenShowing && Input.GetKeyDown(KeyCode.F))
+        {
+            QuitGame();
         }
 
         int minutes = Mathf.FloorToInt(remainingTime / 60);
@@ -51,8 +54,27 @@ public class Timer : MonoBehaviour
         timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
     }
 
-    //void FailScreen()
-    //{
+    void Restart()
+    {
+        //Runs if pressing "R" on "Mission Failed" screen
+        //Teleports player to start point, resets timer values & colour, deactivates timer
+        //Hides "Mission Failed" screen & resets bool
         
-    //}
+        player.transform.position = respawnPoint.position;
+        remainingTime = startingTime;
+        timerText.color = Color.white;
+        failScreenShowing = false;
+        gameObject.SetActive(false);
+    }
+
+    void QuitGame()
+    {
+        //Runs if pressing "F" on Mission Failed screen
+        //Debug print for testing in editor
+        //Quits game in built version
+
+        Debug.Log("Quit Game");
+        Application.Quit();
+
+    } 
 }

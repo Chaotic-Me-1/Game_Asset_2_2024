@@ -15,8 +15,6 @@ public class Health : MonoBehaviour
     //Healthbar UI Reference - Paul B.
     public Image healthBar;
 
-
-
     // Start is called before the first frame update
     void Start()
     {
@@ -42,11 +40,22 @@ public class Health : MonoBehaviour
     public void Damage(float damage)
     {
         currenthealth -= damage;
+        ;
+
+        //if(damageVignette == true)
+        //{
+        //    vignetteColor = damageVignette.GetComponent("Color");
+            
+        //}
 
         // Update Health bar UI & check health after taking damage - Paul B.
         healthBar.fillAmount = currenthealth / 100f;
         checkHealth();
     }
+
+
+            
+
 
     // making function that checks the players health
     void checkHealth()
