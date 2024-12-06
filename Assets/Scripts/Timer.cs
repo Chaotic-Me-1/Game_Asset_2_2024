@@ -10,9 +10,9 @@ public class Timer : MonoBehaviour
     [SerializeField] float remainingTime;
     public GameObject player;
     public Transform respawnPoint;
-    private float startingTime;
+    public float startingTime;
     public GameObject failedScreen;
-    private bool failScreenShowing;
+    public bool failScreenShowing;
 
     // Update is called once per frame
     void Start()
@@ -59,12 +59,14 @@ public class Timer : MonoBehaviour
         //Runs if pressing "R" on "Mission Failed" screen
         //Teleports player to start point, resets timer values & colour, deactivates timer
         //Hides "Mission Failed" screen & resets bool
-        
+
+        failScreenShowing = false;
+        failedScreen.SetActive(false);
+        gameObject.SetActive(false);
         player.transform.position = respawnPoint.position;
         remainingTime = startingTime;
         timerText.color = Color.white;
-        failScreenShowing = false;
-        gameObject.SetActive(false);
+
     }
 
     void QuitGame()

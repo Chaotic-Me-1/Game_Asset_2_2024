@@ -37,7 +37,7 @@ public class SecCameraDetection : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        lightRef.color = Color.white;
+        lightRef.color = Color.yellow;
     }
 
 }

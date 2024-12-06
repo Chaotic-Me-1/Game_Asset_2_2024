@@ -86792,7 +86792,9 @@ MonoBehaviour:
   remainingTime: 60
   player: {fileID: 1605123370}
   respawnPoint: {fileID: 1934073509}
+  startingTime: 0
   failedScreen: {fileID: 472339801}
+  failScreenShowing: 0
 --- !u!1 &1674053338 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2408915972595241356, guid: 8b14ee635e76c59478783eed54e962ca, type: 3}
